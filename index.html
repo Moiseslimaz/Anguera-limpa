@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Anguera Limpa - Relatórios de limpeza e coleta">
+  <title>Anguera Clean - Relatório</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap">
+  <style>
+    /* Estilos Globais */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #eef3f7;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #16940a, #0b7e05);
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 1s;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0f7a1f;
+    }
+
+    form {
+      display: grid;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #16940a;
+      outline: none;
+    }
+
+    button {
+      background-color: #e7c115;
+      color: #fff;
+      font-size: 1.2rem;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #f78419;
+    }
+
+    /* Abas */
+    .tab-labels {
+      display: flex;
+      gap: 10px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-label {
+      flex: 1;
+      text-align: center;
+      background: #16940a;
+      color: white;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tab-label.active {
+      background: #0b5b0a;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 0 0 10px 10px;
+      border: 1px solid #ccc;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Tabela */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 15px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background: #16940a;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f0f0f0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .tab-labels {
+        flex-direction: column;
+      }
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .criador{
+        align-items: center;
+        align-self: auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Anguera Clean - Moisés Lima</h1>
+</header>
+
+<main>
+
+  <section>
+    <h2>Formulário de Relatório</h2>
+    <form id="reportForm" method="post" action="submit_form.php" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="street">Rua</label>
+        <input type="text" id="street" name="street" required>
+      </div>
+
+      <div class="form-group">
+        <label for="neighborhood">Bairro</label>
+        <select id="neighborhood" name="neighborhood" required>
+          <option value="">Selecione</option>
+          <option value="Centro">Centro</option>
+          <option value="Fonte Nova">Fonte Nova</option>
+          <option value="Cajueiro">Cajueiro</option>
+          <option value="Nova Anguera">Nova Anguera</option>
+          <option value="Área de expanção Urbana II">Área de expanção Urbana II</option>
+          <option value="Área de expanção Urbana I">Área de expanção Urbana I</option>
+          <option value="Piedade">Piedade</option>
+          <option value="Usina">Usina</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Tipo</label>
+        <select id="type" name="type" required>
+          <option value="">Selecione</option>
+          <option value="Lixo">Lixo</option>
+          <option value="Entulho">Entulho</option>
+          <option value="Animal">Animal morto</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="media">Foto ou Vídeo</label>
+        <input type="file" id="media" name="media">
+      </div>
+
+      <div class="form-group">
+        <label for="report">Descrição</label>
+        <textarea id="report" name="report" rows="4" required></textarea>
+      </div>
+
+      <button type="submit">Enviar Relatório</button>
+    </form>
+  </section>
+
+  <section>
+    <div class="tab-labels">
+      <div class="tab-label active" onclick="openTab(0)">Registro</div>
+      <div class="tab-label" onclick="openTab(1)">Desvantagens do Lixo</div>
+      <div class="tab-label" onclick="openTab(2)">Vantagens da Reciclagem</div>
+      <div class="tab-label" onclick="openTab(3)">Sobre Reciclagem</div>
+    </div>
+
+    <div class="tab-content active">
+      <h2>Faça seu registro</h2>
+      <p>Contribua preenchendo o formulário. Sua colaboração é essencial para manter Anguera limpa e saudável!</p>
+    </div>
+
+    <div class="tab-content">
+      <h2>Desvantagens do Lixo</h2>
+      <p>O acúmulo de lixo causa poluição, doenças e problemas sociais, afetando a qualidade de vida.</p>
+    </div>
+
+    <div class="tab-content">
+      <h2>Vantagens da Reciclagem</h2>
+      <p>Reciclar economiza recursos naturais, gera empregos e reduz o impacto ambiental.</p>
+    </div>
+
+    <div class="tab-content">
+      <h2>Reciclagem em Anguera</h2>
+      <p>A coleta seletiva transforma materiais descartados em novos produtos, fortalecendo a economia e preservando o meio ambiente.</p>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Coleta de Lixo - Bairros de Anguera</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Bairro</th>
+          <th>Dia</th>
+          <th>Horário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Centro</td><td>Segunda-feira</td><td>08h00 - 11h00</td></tr>
+        <tr><td>Fonte Nova</td><td>Terça-feira</td><td>09h00 - 11h00</td></tr>
+        <tr><td>Cajueiro</td><td>Quarta-feira</td><td>09h00 - 12h00</td></tr>
+        <tr><td>Nova Anguera</td><td>Quinta-feira</td><td>08h00 - 16h00</td></tr>
+        <tr><td>Piedade / Usina</td><td>Sexta-feira</td><td>08h00 - 17h00</td></tr>
+        <tr><td>Comércio</td><td>Sábado</td><td>10h00 - 16h00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+ 
+</main>
+
+<script>
+  function openTab(index) {
+    const tabs = document.querySelectorAll('.tab-content');
+    const labels = document.querySelectorAll('.tab-label');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    labels.forEach(label => label.classList.remove('active'));
+    tabs[index].classList.add('active');
+    labels[index].classList.add('active');
+  }
+
+  document.getElementById('reportForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Relatório enviado com sucesso! Obrigado por colaborar!");
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
